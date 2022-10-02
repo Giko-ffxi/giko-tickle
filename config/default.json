@@ -1,0 +1,15 @@
+{
+    "ui": {
+        "tick": {"enabled" : true},       
+        "hp": {"enabled" : false},
+        "mp": {"enabled" : false},
+        "tp": {"enabled" : false},    
+        "font": {
+            "family": "Arial",
+            "size": 8
+        },
+        "width": 205,
+        "position": [ 1430, 1200 ],
+        "visible": true
+    }
+}
