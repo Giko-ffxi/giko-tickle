@@ -1,72 +1,137 @@
 local config = require('lib.giko.config')
 local common = require('lib.giko.common')
 
-local ui = { hp = {}, mp = {}, tp = {}, dv = {}, ti = {}, bg = { tp = {}, ti = {} }} 
+local ui = { hp = {}, mp = {}, tp = {}, dv = {}, mi = {}, ti = {}} 
 
 local c_width  = 116
 local c_height = 9
 
 ui.load = function()
 
-    ui.hp.text = ui.text('__giko_vital_ui_l4_hp_text', config.ui.position[1] + 130, config.ui.position[2] + 12)
-    ui.mp.text = ui.text('__giko_vital_ui_l4_mp_text', config.ui.position[1] + 271, config.ui.position[2] + 12)
-    ui.tp.text = ui.text('__giko_vital_ui_l4_tp_text', config.ui.position[1] + 414, config.ui.position[2] + 12)
-    ui.ti.text = ui.text('__giko_vital_ui_l4_ti_text', config.ui.position[1] + 557, config.ui.position[2] + 12)
+    ui.mi.bg = ui.component('__giko_vital_ui_l9_mi_bg', 'dot.png', config.ui.position[1] or (ashita.gui.io.DisplaySize.x / 2 - 140), config.ui.position[2] or (ashita.gui.io.DisplaySize.y - 300), 600, 25)
+
+    ui.hp.bg = ui.component('__giko_vital_ui_l1_hp_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
+    ui.mp.bg = ui.component('__giko_vital_ui_l1_mp_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
+    ui.tp.bg = ui.component('__giko_vital_ui_l1_tp_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
+    ui.ti.bg = ui.component('__giko_vital_ui_l1_ti_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
+        
+    ui.hp.pg = ui.component('__giko_vital_ui_l2_hp_pg', 'hp.png', 5, 1, c_width, c_height, ui.hp.bg)
+    ui.mp.pg = ui.component('__giko_vital_ui_l2_mp_pg', 'mp.png', 5, 1, c_width, c_height, ui.mp.bg)
+    ui.tp.pg = ui.component('__giko_vital_ui_l2_tp_pg', 'tp.png', 5, 1, 0, c_height, ui.tp.bg)
+    ui.ti.pg = ui.component('__giko_vital_ui_l2_ti_pg', 'ti.png', 5, 1, 0, c_height, ui.ti.bg)
+    ui.dv.pg = ui.component('__giko_vital_ui_l3_dv_pg', 'dv.png', 5, 1, 0, c_height, ui.ti.bg)
+
+    ui.hp.tt = ui.text('__giko_vital_ui_l4_hp_tt', nil, true, 120, 14, ui.hp.bg)
+    ui.mp.tt = ui.text('__giko_vital_ui_l4_mp_tt', nil, true, 120, 14, ui.mp.bg)
+    ui.tp.tt = ui.text('__giko_vital_ui_l4_tp_tt', nil, true, 120, 14, ui.tp.bg)
+    ui.ti.tt = ui.text('__giko_vital_ui_l4_ti_tt', nil, true, 120, 14, ui.ti.bg)
     
-    ui.hp.component = ui.component('__giko_vital_ui_l2_hp', 'hp.png', config.ui.position[1] + 15, config.ui.position[2] + 1, c_width, c_height)
-    ui.mp.component = ui.component('__giko_vital_ui_l2_mp', 'mp.png', config.ui.position[1] + 156, config.ui.position[2] + 1, c_width, c_height)
-    ui.tp.component = ui.component('__giko_vital_ui_l2_tp', 'tp.png', config.ui.position[1] + 299, config.ui.position[2] + 1, 0, c_height)
-    ui.ti.component = ui.component('__giko_vital_ui_l2_ti', 'ti.png', config.ui.position[1] + 441, config.ui.position[2] + 1, 0, c_height)
-    ui.dv.component = ui.component('__giko_vital_ui_l3_dv', 'dv.png', config.ui.position[1] + 441, config.ui.position[2] + 1, 0, c_height)
-    ui.bg.component = ui.component('__giko_vital_ui_l1_bg', 'bg.png', config.ui.position[1], config.ui.position[2], 575, 24)
+    ui.hp.ll = ui.text('__giko_vital_ui_l4_hp_ll', 'Hp', false, 3, 14, ui.hp.bg)
+    ui.mp.ll = ui.text('__giko_vital_ui_l4_mp_ll', 'Mp', false, 3, 14, ui.mp.bg)
+    ui.tp.ll = ui.text('__giko_vital_ui_l4_tp_ll', 'Tp', false, 3, 14, ui.tp.bg)
+    ui.ti.ll = ui.text('__giko_vital_ui_l4_ti_ll', 'Tickle', false, 3, 14, ui.ti.bg)
 
 end 
 
+ui.render = function()
+
+    ui.mi.bg:SetVisibility(config.ui.visible)
+
+    ui.hp.bg:SetVisibility(config.ui.visible and config.hp.enabled)
+    ui.hp.pg:SetVisibility(config.ui.visible and config.hp.enabled)
+    ui.hp.tt:SetVisibility(config.ui.visible and config.hp.enabled)
+    ui.hp.ll:SetVisibility(config.ui.visible and config.hp.enabled)
+
+    ui.mp.bg:SetVisibility(config.ui.visible and config.mp.enabled)
+    ui.mp.pg:SetVisibility(config.ui.visible and config.mp.enabled)
+    ui.mp.tt:SetVisibility(config.ui.visible and config.mp.enabled)
+    ui.mp.ll:SetVisibility(config.ui.visible and config.mp.enabled)    
+    
+    ui.tp.bg:SetVisibility(config.ui.visible and config.tp.enabled)
+    ui.tp.pg:SetVisibility(config.ui.visible and config.tp.enabled)
+    ui.tp.tt:SetVisibility(config.ui.visible and config.tp.enabled)
+    ui.tp.ll:SetVisibility(config.ui.visible and config.tp.enabled)
+
+    ui.ti.bg:SetVisibility(config.ui.visible and config.tick.enabled)
+    ui.ti.pg:SetVisibility(config.ui.visible and config.tick.enabled)
+    ui.dv.pg:SetVisibility(config.ui.visible and config.tick.enabled)
+    ui.ti.tt:SetVisibility(config.ui.visible and config.tick.enabled)
+    ui.ti.ll:SetVisibility(config.ui.visible and config.tick.enabled)
+
+    ui.mp.bg:SetPositionX((config.hp.enabled and 1 or 0) * 145)
+    ui.tp.bg:SetPositionX(((config.hp.enabled and 1 or 0) + (config.mp.enabled and 1 or 0)) * 145)
+    ui.ti.bg:SetPositionX(((config.hp.enabled and 1 or 0) + (config.mp.enabled and 1 or 0) + (config.tp.enabled and 1 or 0)) * 145)
+
+    ui.mi.bg:GetBackground():SetWidth(math.max(0, (((config.hp.enabled and 1 or 0) + (config.mp.enabled and 1 or 0) + (config.tp.enabled and 1 or 0) + (config.tick.enabled and 1 or 0) - 1) * 145) + 126))
+
+end
+
 ui.hp.set = function(hp, hpp)
-    ui.hp.text:SetText(string.format('%d', hp))
-    ui.hp.component:GetBackground():SetWidth(hpp / 100 * c_width)
+
+    ui.hp.pg:GetBackground():SetWidth(hpp / 100 * c_width)
+    ui.hp.tt:SetText(string.format('%d', hp))
+
 end
 
 ui.mp.set = function(mp, mpp)
-    ui.mp.text:SetText(string.format('%d', mp))
-    ui.mp.component:GetBackground():SetWidth(mpp / 100 * c_width)
+
+    ui.mp.pg:GetBackground():SetWidth(mpp / 100 * c_width)
+    ui.mp.tt:SetText(string.format('%d', mp))
+
 end
 
 ui.tp.set = function(tp)
-    ui.tp.text:SetText(string.format('%d', tp))
-    ui.tp.component:GetBackground():SetWidth(tp / 3000 * c_width)
+
+    ui.tp.pg:GetBackground():SetWidth(tp / 3000 * c_width)
+    ui.tp.tt:SetText(string.format('%d', tp))
+
 end
 
 ui.ti.set = function(c, mc, dv)
-    ui.ti.text:SetText(string.format('%d', math.max(0, mc - c)))
-    ui.dv.component:GetBackground():SetWidth(math.min(c_width * (1 - math.min(c / mc, 1)), c_width * math.min(dv / mc, 1)))
-    ui.ti.component:GetBackground():SetWidth(c_width * (1 - math.min(c / mc, 1)))
+
+    ui.dv.pg:GetBackground():SetWidth(math.min(c_width * (1 - math.min(c / mc, 1)), c_width * math.min(dv / mc, 1)))
+    ui.ti.pg:GetBackground():SetWidth(c_width * (1 - math.min(c / mc, 1)))
+    ui.ti.tt:SetText(string.format('%d', math.max(0, mc - c)))
+
 end
 
 ui.unload = function()
         
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_hp_text')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_mp_text')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_tp_text')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_ti_text')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_hp_pg')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_mp_pg')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_tp_pg')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_ti_pg')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_dv_pg')
+    
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l1_hp_bg')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l1_mp_bg')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l1_tp_bg')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l1_ti_bg')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l9_mi_bg')
+    
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_hp_ll')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_mp_ll')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_tp_ll')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_ti_ll')
 
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_hp')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_mp')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_tp')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_ti')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l3dw_dv')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l1_bg')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_hp_tt')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_mp_tt')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_tp_tt')
+    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_ti_tt')
 
 end
 
-ui.text = function(name, x, y, visibility)
+ui.text = function(name, val, right, x, y, parent, visibility)
 
     local text = AshitaCore:GetFontManager():Create(name)
 
+    text:SetText(val ~= nil and val or '')
     text:SetBold(true)
+    text:SetParent(parent)
     text:SetFontFamily('Verdana')
     text:SetFontHeight(8)
-    text:SetRightJustified(true)
+    text:SetRightJustified(right)
+    text:SetColor(0xFFE2E2E2)
     text:SetPositionX(x)
     text:SetPositionY(y)
     text:SetVisibility(visibility == true or visibility == nil or false)
@@ -77,7 +142,7 @@ ui.text = function(name, x, y, visibility)
 
 end
 
-ui.component = function(name, img, x, y, w, h, visibility)
+ui.component = function(name, img, x, y, w, h, parent, visibility)
 
     local component = AshitaCore:GetFontManager():Create(name)
 
@@ -87,11 +152,11 @@ ui.component = function(name, img, x, y, w, h, visibility)
     component:GetBackground():SetWidth(w)
     component:GetBackground():SetHeight(h)
     
+    component:SetParent(parent)
     component:SetPositionX(x)
     component:SetPositionY(y)
     component:SetVisibility(visibility == true or visibility == nil or false)
     component:SetAutoResize(false)
-    component:SetLocked(true)
 
     return component
 

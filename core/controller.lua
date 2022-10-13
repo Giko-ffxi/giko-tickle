@@ -26,6 +26,7 @@ controller.render = function()
     ui.mp.set(mp, mpp)
     ui.tp.set(tp)
     ui.ti.set(c, (hpp ~= 100 or mpp ~= 100) and mc or 0, dv)
+    ui.render()
 
 end
 
@@ -123,6 +124,30 @@ controller.next = function()
 
     return avg + dev, dev
     
+end
+
+controller.mouse = function(id, x, y, delta, blocked)
+
+    local x1 = ui.mi.bg:GetBackground():GetPositionX()
+    local y1 = ui.mi.bg:GetBackground():GetPositionY()
+    local x2 = x1 + ui.mi.bg:GetBackground():GetWidth()
+    local y2 = y1 + ui.mi.bg:GetBackground():GetHeight()
+
+    ui.hover = x > x1 and x < x2 and y > y1 and y < y2
+
+    if id == 512 and (config.ui.position[1] ~= x1 or config.ui.position[2] ~= y1) then
+    
+        config.ui.position[1] = x1
+        config.ui.position[2] = y1
+
+        ashita.timer.create('save', 1, 1, function()
+            config.save()
+        end)
+
+    end
+
+    return false
+
 end
 
 controller.unload = function()
