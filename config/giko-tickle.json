@@ -12,7 +12,7 @@
         "enabled": false
     },
     "ui": {
-        "position": [ 1584, 930 ],
+        "position": [ null, null ],
         "visible": true
     }
 }
