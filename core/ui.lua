@@ -8,28 +8,28 @@ local c_height = 9
 
 ui.load = function()
 
-    ui.mi.bg = ui.component('__giko_vital_ui_l9_mi_bg', 'dot.png', config.ui.position[1] or (ashita.gui.io.DisplaySize.x / 2 - 140), config.ui.position[2] or (ashita.gui.io.DisplaySize.y - 300), 600, 25)
+    ui.mi.bg = ui.component('__giko_tickle_ui_l9_mi_bg', 'dot.png', config.ui.position[1] or (ashita.gui.io.DisplaySize.x / 2 - 140), config.ui.position[2] or (ashita.gui.io.DisplaySize.y - 300), 600, 25)
 
-    ui.hp.bg = ui.component('__giko_vital_ui_l1_hp_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
-    ui.mp.bg = ui.component('__giko_vital_ui_l1_mp_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
-    ui.tp.bg = ui.component('__giko_vital_ui_l1_tp_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
-    ui.ti.bg = ui.component('__giko_vital_ui_l1_ti_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
+    ui.hp.bg = ui.component('__giko_tickle_ui_l1_hp_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
+    ui.mp.bg = ui.component('__giko_tickle_ui_l1_mp_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
+    ui.tp.bg = ui.component('__giko_tickle_ui_l1_tp_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
+    ui.ti.bg = ui.component('__giko_tickle_ui_l1_ti_bg', 'bg.png', 0, 0, 126, 12, ui.mi.bg)
         
-    ui.hp.pg = ui.component('__giko_vital_ui_l2_hp_pg', 'hp.png', 5, 1, c_width, c_height, ui.hp.bg)
-    ui.mp.pg = ui.component('__giko_vital_ui_l2_mp_pg', 'mp.png', 5, 1, c_width, c_height, ui.mp.bg)
-    ui.tp.pg = ui.component('__giko_vital_ui_l2_tp_pg', 'tp.png', 5, 1, 0, c_height, ui.tp.bg)
-    ui.ti.pg = ui.component('__giko_vital_ui_l2_ti_pg', 'ti.png', 5, 1, 0, c_height, ui.ti.bg)
-    ui.dv.pg = ui.component('__giko_vital_ui_l3_dv_pg', 'dv.png', 5, 1, 0, c_height, ui.ti.bg)
+    ui.hp.pg = ui.component('__giko_tickle_ui_l2_hp_pg', 'hp.png', 5, 1, c_width, c_height, ui.hp.bg)
+    ui.mp.pg = ui.component('__giko_tickle_ui_l2_mp_pg', 'mp.png', 5, 1, c_width, c_height, ui.mp.bg)
+    ui.tp.pg = ui.component('__giko_tickle_ui_l2_tp_pg', 'tp.png', 5, 1, 0, c_height, ui.tp.bg)
+    ui.ti.pg = ui.component('__giko_tickle_ui_l2_ti_pg', 'ti.png', 5, 1, 0, c_height, ui.ti.bg)
+    ui.dv.pg = ui.component('__giko_tickle_ui_l3_dv_pg', 'dv.png', 5, 1, 0, c_height, ui.ti.bg)
 
-    ui.hp.tt = ui.text('__giko_vital_ui_l4_hp_tt', nil, true, 120, 14, ui.hp.bg)
-    ui.mp.tt = ui.text('__giko_vital_ui_l4_mp_tt', nil, true, 120, 14, ui.mp.bg)
-    ui.tp.tt = ui.text('__giko_vital_ui_l4_tp_tt', nil, true, 120, 14, ui.tp.bg)
-    ui.ti.tt = ui.text('__giko_vital_ui_l4_ti_tt', nil, true, 120, 14, ui.ti.bg)
+    ui.hp.tt = ui.text('__giko_tickle_ui_l4_hp_tt', nil, true, 120, 14, ui.hp.bg)
+    ui.mp.tt = ui.text('__giko_tickle_ui_l4_mp_tt', nil, true, 120, 14, ui.mp.bg)
+    ui.tp.tt = ui.text('__giko_tickle_ui_l4_tp_tt', nil, true, 120, 14, ui.tp.bg)
+    ui.ti.tt = ui.text('__giko_tickle_ui_l4_ti_tt', nil, true, 120, 14, ui.ti.bg)
     
-    ui.hp.ll = ui.text('__giko_vital_ui_l4_hp_ll', 'Hp', false, 3, 14, ui.hp.bg)
-    ui.mp.ll = ui.text('__giko_vital_ui_l4_mp_ll', 'Mp', false, 3, 14, ui.mp.bg)
-    ui.tp.ll = ui.text('__giko_vital_ui_l4_tp_ll', 'Tp', false, 3, 14, ui.tp.bg)
-    ui.ti.ll = ui.text('__giko_vital_ui_l4_ti_ll', 'Tickle', false, 3, 14, ui.ti.bg)
+    ui.hp.ll = ui.text('__giko_tickle_ui_l4_hp_ll', 'Hp', false, 3, 14, ui.hp.bg)
+    ui.mp.ll = ui.text('__giko_tickle_ui_l4_mp_ll', 'Mp', false, 3, 14, ui.mp.bg)
+    ui.tp.ll = ui.text('__giko_tickle_ui_l4_tp_ll', 'Tp', false, 3, 14, ui.tp.bg)
+    ui.ti.ll = ui.text('__giko_tickle_ui_l4_ti_ll', 'Tickle', false, 3, 14, ui.ti.bg)
 
 end 
 
@@ -97,27 +97,28 @@ end
 
 ui.unload = function()
         
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_hp_pg')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_mp_pg')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_tp_pg')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_ti_pg')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l2_dv_pg')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l9_mi_bg')
+	
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l1_hp_bg')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l1_mp_bg')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l1_tp_bg')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l1_ti_bg')
+	
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l2_hp_pg')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l2_mp_pg')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l2_tp_pg')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l2_ti_pg')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l3_dv_pg')    
     
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l1_hp_bg')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l1_mp_bg')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l1_tp_bg')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l1_ti_bg')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l9_mi_bg')
-    
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_hp_ll')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_mp_ll')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_tp_ll')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_ti_ll')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l4_hp_ll')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l4_mp_ll')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l4_tp_ll')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l4_ti_ll')
 
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_hp_tt')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_mp_tt')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_tp_tt')
-    AshitaCore:GetFontManager():Delete('__giko_vital_ui_l4_ti_tt')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l4_hp_tt')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l4_mp_tt')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l4_tp_tt')
+    AshitaCore:GetFontManager():Delete('__giko_tickle_ui_l4_ti_tt')
 
 end
 
