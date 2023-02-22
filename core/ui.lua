@@ -35,28 +35,30 @@ end
 
 ui.render = function()
 
-    ui.mi.bg:SetVisibility(config.ui.visible)
+    local entity = GetPlayerEntity()
 
-    ui.hp.bg:SetVisibility(config.ui.visible and config.hp.enabled)
-    ui.hp.pg:SetVisibility(config.ui.visible and config.hp.enabled)
-    ui.hp.tt:SetVisibility(config.ui.visible and config.hp.enabled)
-    ui.hp.ll:SetVisibility(config.ui.visible and config.hp.enabled)
+    ui.mi.bg:SetVisibility(config.ui.visible and entity ~= nil)
 
-    ui.mp.bg:SetVisibility(config.ui.visible and config.mp.enabled)
-    ui.mp.pg:SetVisibility(config.ui.visible and config.mp.enabled)
-    ui.mp.tt:SetVisibility(config.ui.visible and config.mp.enabled)
-    ui.mp.ll:SetVisibility(config.ui.visible and config.mp.enabled)    
+    ui.hp.bg:SetVisibility(config.ui.visible and config.hp.enabled and entity ~= nil)
+    ui.hp.pg:SetVisibility(config.ui.visible and config.hp.enabled and entity ~= nil)
+    ui.hp.tt:SetVisibility(config.ui.visible and config.hp.enabled and entity ~= nil)
+    ui.hp.ll:SetVisibility(config.ui.visible and config.hp.enabled and entity ~= nil)
+
+    ui.mp.bg:SetVisibility(config.ui.visible and config.mp.enabled and entity ~= nil)
+    ui.mp.pg:SetVisibility(config.ui.visible and config.mp.enabled and entity ~= nil)
+    ui.mp.tt:SetVisibility(config.ui.visible and config.mp.enabled and entity ~= nil)
+    ui.mp.ll:SetVisibility(config.ui.visible and config.mp.enabled and entity ~= nil)    
     
-    ui.tp.bg:SetVisibility(config.ui.visible and config.tp.enabled)
-    ui.tp.pg:SetVisibility(config.ui.visible and config.tp.enabled)
-    ui.tp.tt:SetVisibility(config.ui.visible and config.tp.enabled)
-    ui.tp.ll:SetVisibility(config.ui.visible and config.tp.enabled)
+    ui.tp.bg:SetVisibility(config.ui.visible and config.tp.enabled and entity ~= nil)
+    ui.tp.pg:SetVisibility(config.ui.visible and config.tp.enabled and entity ~= nil)
+    ui.tp.tt:SetVisibility(config.ui.visible and config.tp.enabled and entity ~= nil)
+    ui.tp.ll:SetVisibility(config.ui.visible and config.tp.enabled and entity ~= nil)
 
-    ui.ti.bg:SetVisibility(config.ui.visible and config.tick.enabled)
-    ui.ti.pg:SetVisibility(config.ui.visible and config.tick.enabled)
-    ui.dv.pg:SetVisibility(config.ui.visible and config.tick.enabled)
-    ui.ti.tt:SetVisibility(config.ui.visible and config.tick.enabled)
-    ui.ti.ll:SetVisibility(config.ui.visible and config.tick.enabled)
+    ui.ti.bg:SetVisibility(config.ui.visible and config.tick.enabled and entity ~= nil)
+    ui.ti.pg:SetVisibility(config.ui.visible and config.tick.enabled and entity ~= nil)
+    ui.dv.pg:SetVisibility(config.ui.visible and config.tick.enabled and entity ~= nil)
+    ui.ti.tt:SetVisibility(config.ui.visible and config.tick.enabled and entity ~= nil)
+    ui.ti.ll:SetVisibility(config.ui.visible and config.tick.enabled and entity ~= nil)
 
     ui.mp.bg:SetPositionX((config.hp.enabled and 1 or 0) * 145)
     ui.tp.bg:SetPositionX(((config.hp.enabled and 1 or 0) + (config.mp.enabled and 1 or 0)) * 145)

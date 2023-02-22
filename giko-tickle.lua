@@ -2,7 +2,7 @@ package.path = (string.gsub(_addon.path, '[^\\]+\\?$', '')) .. 'giko-common\\' .
 
 _addon.author 	= 'giko'
 _addon.name 	= 'giko-tickle'
-_addon.version 	= '1.0.5'
+_addon.version 	= '1.0.6'
 
 ui         = require('core.ui')
 console    = require('core.console')
